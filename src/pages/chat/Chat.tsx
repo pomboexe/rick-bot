@@ -88,6 +88,12 @@ export default function Chat() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               sx={{ mt: 2, borderRadius: 1 }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleSendMessage();
+                }
+              }}
               InputProps={{
                 sx: { color: "#black" },
                 endAdornment: (
