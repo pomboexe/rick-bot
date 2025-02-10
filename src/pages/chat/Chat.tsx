@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Container,
   IconButton,
   InputAdornment,
@@ -9,12 +8,17 @@ import {
   Typography,
 } from "@mui/material";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { sendMessageToRick } from "../../service/api";
 import { Send } from "@mui/icons-material";
 
+interface Messages {
+  sender: string;
+  text: string
+}
+
 export default function Chat() {
-  const [messages, setMessages] = useState<{ sender: string; text: string }[]>(
+  const [messages, setMessages] = useState<Messages[]>(
     []
   );
   const [input, setInput] = useState("");
@@ -32,6 +36,11 @@ export default function Chat() {
     setMessages((prev) => [...prev, botMessage]);
   };
 
+  const end = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    end.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
   return (
     <Container
       maxWidth="sm"
@@ -41,6 +50,7 @@ export default function Chat() {
         borderRadius: 2,
         padding: "0 !important",
         overflow: "hidden"
+
       }}
     >
       <Stack direction={"column"} textAlign={"center"}>
@@ -67,7 +77,7 @@ export default function Chat() {
                   sx={{
                     maxWidth: "70%",
                     bgcolor: msg.sender === "Você" ? "#f0e14a" : "#02afc5",
-                    color: "#fff",
+                    color: "black",
                     px: 2,
                     py: 1,
                     borderRadius: 2,
@@ -79,8 +89,11 @@ export default function Chat() {
                 </Box>
               </Box>
             ))}
+            <div ref={end}></div>
           </Box>
-          <Box>
+          <Box sx={{
+            p: 2
+          }}>
             <TextField
               fullWidth
               variant="outlined"
