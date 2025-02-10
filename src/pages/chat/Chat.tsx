@@ -22,17 +22,18 @@ export default function Chat() {
     []
   );
   const [input, setInput] = useState("");
+  const [isLoading, setIsloading] = useState(false)
 
   const handleSendMessage = async () => {
     if (!input) return
     const userMessage = { sender: "Você", text: input };
     setMessages((prev) => [...prev, userMessage]);
-
+    setIsloading(true)
     setInput("");
 
     const botResponse = await sendMessageToRick(input);
     const botMessage = { sender: "RickBot", text: botResponse };
-
+    setIsloading(false)
     setMessages((prev) => [...prev, botMessage]);
   };
 
@@ -85,10 +86,16 @@ export default function Chat() {
                 >
                   <Typography variant="body1">
                     <strong>{msg.sender}:</strong> {msg.text}
+
                   </Typography>
                 </Box>
               </Box>
             ))}
+            {isLoading && (
+              <Box sx={{ textAlign: "center", mt: 2 }}>
+                <Typography variant="body1">Rick Bot está pensando...</Typography>
+              </Box>
+            )}
             <div ref={end}></div>
           </Box>
           <Box sx={{

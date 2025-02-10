@@ -12,6 +12,6 @@ export const sendMessageToRick = async (message: string) => {
     return response.data.text || "algo de errado";
   } catch (error) {
     console.log(error);
-    return "Algo deu errado";
+    throw new Error("Erro ao enviar a mensagem para o bot");
   }
 };
