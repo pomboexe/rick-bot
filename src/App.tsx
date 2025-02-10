@@ -12,8 +12,8 @@ function App() {
       backgroundPosition: "center",
       transition: "background-image 0.5s ease-in-out",
       backgroundImage: {
-        xs: "url('./public/phone-wallpaper.jpg')",
-        md: "url('./public/pc-wallpaper.jpg')",
+        xs: "url('./phone-wallpaper.jpg')",
+        md: "url('./pc-wallpaper.jpg')",
       },
     }}>
       <Chat />
