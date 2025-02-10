@@ -90,7 +90,7 @@ O **front-end** foi desenvolvido com **React** e utiliza `axios` para fazer requ
 2. **Crie um arquivo \`.env\`** na raiz do projeto e adicione:
 
    ```env
-   REACT_APP_CLIENT_ID=<seu_clientid_aqui>
+   VITE_CLIENT_ID=<seu_clientid_aqui>
    ```
 
    Isso evita que o \`clientid\` fique exposto no código.
