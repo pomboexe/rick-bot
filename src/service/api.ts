@@ -5,7 +5,7 @@ export const sendMessageToRick = async (message: string) => {
     const response = await axios.post("https://ai.stec.cx/single", {
       prompt: message,
       service: "saturn-v1",
-      clientid: "M2mA7OWEhM",
+      clientid:  process.env.REACT_APP_CLIENT_ID,
       projectid: "1a9z7ximm076ibr0hisgyk",
       habits: ["sarcastic", "rude"],
     });
