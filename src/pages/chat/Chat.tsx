@@ -19,11 +19,12 @@ export default function Chat() {
     const userMessage = { sender: "Você", text: input };
     setMessages((prev) => [...prev, userMessage]);
 
+    setInput("");
+
     const botResponse = await sendMessageToRick(input);
     const botMessage = { sender: "RickBot", text: botResponse };
 
     setMessages((prev) => [...prev, botMessage]);
-    setInput("");
   };
 
   return (
